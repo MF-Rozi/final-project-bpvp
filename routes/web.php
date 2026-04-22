@@ -4,7 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('landing.pages.index');
+    $zones = \App\Models\Zone::all();
+    return view('landing.pages.index', compact('zones'));
 });
 
 Route::get('/detail', function () {
@@ -13,8 +14,10 @@ Route::get('/detail', function () {
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
-        return view('admin.master');
+        return view('admin.pages.index');
     })->name('index');
+
+    Route::resource('zones', \App\Http\Controllers\ZoneController::class);
 });
 
 
