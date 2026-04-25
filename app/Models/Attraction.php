@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Attraction extends Model
+{
+    protected $fillable = [
+        'name',
+        'description',
+        'ticket_price',
+        'image',
+        'zone_id',
+    ];
+
+    public function zone()
+    {
+        return $this->belongsTo(Zone::class);
+    }
+}
